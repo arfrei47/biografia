@@ -1,0 +1,177 @@
+/* ==========================================================================
+   Escopo Global de Variáveis (Acessibilidade e Padrão Clean)
+   ========================================================================== */
+:root {
+    --color-primary: #007bff;
+    --color-secondary: #333333;
+    --color-background: #f4f4f4;
+    --color-light: #ffffff;
+    --muted-color: #6c757d;
+    --card-bg: #ffffff;
+    --border-color: #dee2e6;
+    --transition-speed: 0.3s;
+}
+
+/* Variáveis Corrigidas para o Dark Mode (Contraste Acessível WCAG) */
+body.dark-mode {
+    --color-background: #121212;
+    --color-secondary: #f8f9fa;
+    --muted-color: #b0b3b8;
+    --card-bg: #1e1e1e;
+    --border-color: #333333;
+    --color-primary: #3792ff; /* Azul elétrico legível sob o fundo escuro */
+}
+
+/* ==========================================================================
+   Reset e Configurações Gerais do Body
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    background-color: var(--color-background);
+    color: var(--color-secondary);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* ==========================================================================
+   Componentes Principais (Header, Main, Footer)
+   ========================================================================== */
+header {
+    background-color: #1a1d20;
+    color: #ffffff;
+}
+
+.custom-subtitle {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.custom-location {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+main {
+    max-width: 950px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+section h2 {
+    font-size: 1.6rem;
+    color: var(--color-primary);
+    border-color: var(--border-color) !important;
+}
+
+footer {
+    background-color: #1a1d20;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   Classes Utilitárias de Formatação e Texto
+   ========================================================================== */
+.text-justify {
+    text-align: justify;
+}
+
+.text-align {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.text-indent {
+    text-indent: 50px;
+}
+
+.dynamic-text, .dynamic-text strong {
+    color: var(--color-secondary);
+}
+
+.custom-muted-text {
+    color: var(--muted-color) !important;
+}
+
+/* ==========================================================================
+   Cards, Listas e Elementos de UI
+   ========================================================================== */
+.card-custom {
+    background-color: var(--card-bg);
+    color: var(--color-secondary);
+    border-color: var(--border-color) !important;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.card-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   Animações de Scroll (IntersectionObserver Layout integration)
+   ========================================================================== */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* UI Widget: Botão Flutuante do Dark Mode */
+.dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--color-secondary);
+    padding: 12px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-speed), background-color var(--transition-speed);
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   Media Queries Avançadas de Responsividade
+   ========================================================================== */
+@media (max-width: 992px) {
+    main {
+        max-width: 90%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        max-width: 100%;
+        margin: 10px;
+        padding: 15px;
+    }
+    .text-indent {
+        text-indent: 25px;
+    }
+    .dark-mode-toggle {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+    }
+}
